@@ -1,5 +1,7 @@
 package interfaces;
 
+import src.Usuario;
+
 public interface InterSistema1 {
 
 	//interfaz que define creacion, logeo y eliminacion de usuarios
