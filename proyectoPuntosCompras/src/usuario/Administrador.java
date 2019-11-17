@@ -9,9 +9,8 @@ public class Administrador extends Usuario{
 	}
 
 	@Override
-	public String mostrarPuntosYId(String nombreUsuarioStringContraseña) {
-		
-		return null;
+	public String mostrarPuntosYId() {
+		return "El ID del usuario es: "+ getId() + " Y los puntos acumulados del usuario son: "+ getPuntosAcumulados();
 	}
 
 }

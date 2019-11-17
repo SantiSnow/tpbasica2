@@ -3,10 +3,10 @@ package src;
 public class Producto {
 	
 	private String nombre;
-	private long id;
+	private Long id;
 	private Double precio;
 	
-	public Producto(String nombre, long id, Double precio) {
+	public Producto(String nombre, Long id, Double precio) {
 		super();
 		this.nombre = nombre;
 		this.id = id;
@@ -21,7 +21,7 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -75,8 +75,4 @@ public class Producto {
 	public String toString() {
 		return "Producto [nombre=" + nombre + ", id=" + id + ", precio=" + precio + "]";
 	}
-	
-	
-	
-
 }

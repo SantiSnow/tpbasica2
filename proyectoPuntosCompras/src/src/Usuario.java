@@ -100,5 +100,5 @@ public abstract class Usuario {
 	}
 
 	//metodos abstractos
-	public abstract String mostrarPuntosYId(String nombreUsuarioStringContraseña);
+	public abstract String mostrarPuntosYId();
 }
