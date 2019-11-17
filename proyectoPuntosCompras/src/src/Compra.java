@@ -68,6 +68,7 @@ public class Compra implements InterCompra{
 			JOptionPane.showInputDialog("No se pueden repetir productos.");
 			return false;
 		}
+		
 	}
 
 	@Override
