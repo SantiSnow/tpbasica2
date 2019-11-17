@@ -1,48 +1,46 @@
 package src;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Sistema {
-	
+	//atributos
 	private String nombreDelSistema;
 	Set <Usuario> listaDeUsuarios;
     Set <Producto> listaDeProducto;
 	
-    public Sistema(String nombreDelSistema, Set<Usuario> listaDeUsuarios, Set<Producto> listaDeProducto) {
-		super();
+    //constructor
+    public Sistema(String nombreDelSistema) {
 		this.nombreDelSistema = nombreDelSistema;
-		this.listaDeUsuarios = listaDeUsuarios;
-		this.listaDeProducto = listaDeProducto;
+		listaDeUsuarios = new HashSet<Usuario>();
+		listaDeProducto = new HashSet<Producto>();
 	}
 
+    //constructor por defecto
 	public Sistema() {
-		super();
 	}
 
+	//getters y setters
 	public String getNombreDelSistema() {
 		return nombreDelSistema;
 	}
-
 	public void setNombreDelSistema(String nombreDelSistema) {
 		this.nombreDelSistema = nombreDelSistema;
 	}
-
 	public Set<Usuario> getListaDeUsuarios() {
 		return listaDeUsuarios;
 	}
-
 	public void setListaDeUsuarios(Set<Usuario> listaDeUsuarios) {
 		this.listaDeUsuarios = listaDeUsuarios;
 	}
-
 	public Set<Producto> getListaDeProducto() {
 		return listaDeProducto;
 	}
-
 	public void setListaDeProducto(Set<Producto> listaDeProducto) {
 		this.listaDeProducto = listaDeProducto;
 	}
 
+	//hashcode e equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
