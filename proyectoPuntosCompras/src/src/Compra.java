@@ -63,8 +63,7 @@ public class Compra implements InterCompra{
 
 	@Override
 	public Boolean agregarProductoALaCompra(Producto producto) {
-		try{listaDeProductos.add(producto);
-		return true;
+		try{return listaDeProductos.add(producto);
 		}catch(Exception e) {
 			JOptionPane.showInputDialog("No se pueden repetir productos.");
 			return false;
