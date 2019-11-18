@@ -1,11 +1,13 @@
 package src;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import interfaces.InterSistema1;
 import interfaces.InterSistema2;
 import interfaces.InterSistema3;
+import usuario.Administrador;
 
 public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	//atributos
@@ -93,51 +95,71 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 
 	@Override
-	public Boolean agregaUnUsuarioAlSistema(Usuario administrador) {
-		
-		return null;
-	}
-
-	@Override
-	public Boolean agregarUnUsuarioAlSistema2(Usuario user) {
-		
-		return null;
+	public Boolean agregaUnUsuarioAlSistema(Usuario administrador){
+		if(listaDeUsuarios.contains(administrador))
+			return false;
+		else
+			listaDeUsuarios.add(administrador);
+			return true;
 	}
 
 	@Override
 	public Boolean eliminarUsuario(Usuario cliente) {
-		
-		return null;
+		Boolean resultado = false;
+		Iterator<Usuario> it = listaDeUsuarios.iterator();
+		while(it.hasNext()) {
+			if(it.next().getNombreDeUsuario().equals(cliente.getNombreDeUsuario())) {
+				it.remove();
+				resultado = true;
+			}
+			else {
+				resultado = false;
+			}
+		}
+		return resultado;
+	}
+	@Override
+	public String retornarElTipoDeUsuario(Usuario user) {
+		if(user instanceof Administrador)
+			return "El usuario es un Administrador";
+		else 
+			return "El usuario es un Cliente";
 	}
 
 	@Override
-	public Boolean eliminarUsuarioHash(Usuario cliente) {
-		
-		return null;
-	}
-
-	@Override
-	public Boolean loggearseComoUsuarioHash(String nombreUsuario, String contraseña) {
-		
-		return null;
-	}
-
-	@Override
-	public Boolean logearseComoUsuario(String nombreUsuario, String contraseña) {
-		
-		return null;
+	public Boolean loggearseComoUsuario(String nombreUsuario, String contraseña) {
+		for(Usuario i: listaDeUsuarios) {
+			if(i.getNombreDeUsuario().equals(nombreUsuario) && i.getContraseña().equals(contraseña)){
+				i.setEstado(true);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
 	public Integer conocerCantidadDePuntos(String nombreUsuario, String contraseña) {
-		
-		return null;
+		Integer resultado = 0;
+		for(Usuario i: listaDeUsuarios) {
+			if(i.getNombreDeUsuario().equals(nombreUsuario) && i.getContraseña().equals(contraseña)) {
+				resultado = i.getPuntosAcumulados();
+			}
+			else {
+				resultado = 0;
+			}
+		}
+		return resultado;
 	}
 
 	@Override
 	public Boolean salirDelSistema(String nombreDeUsuario, String contraseña) {
-		
-		return null;
+		for(Usuario i: listaDeUsuarios) {
+			if(i.getNombreDeUsuario().equals(nombreDeUsuario) && i.getContraseña().equals(contraseña)){
+				i.setEstado(false);
+				return true;
+			}
+		}
+		return false;
 	}
 	@Override
 	public void realizarUnaCompra(Usuario usuario, Producto producto) {
