@@ -185,11 +185,16 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	
 	@Override
 	public Double realizarUnaCompra(Usuario usuario, Producto producto) {
-		Long idCompra = (long) (Math.random() * 999999999) + 1;
-		Compra nuevaCompra = new Compra(idCompra, usuario);
-		listaDeCompra.add(nuevaCompra);
-		nuevaCompra.agregarProductoALaCompra(producto);
-		return nuevaCompra.calcularPrecioFinal();
+		for (Usuario i : listaDeUsuarios) {
+			if(i == usuario && usuario.getEstado() == true) {
+				Long idCompra = (long) (Math.random() * 999999999) + 1;
+				Compra nuevaCompra = new Compra(idCompra, usuario);
+				listaDeCompra.add(nuevaCompra);
+				nuevaCompra.agregarProductoALaCompra(producto);
+				return nuevaCompra.calcularPrecioFinal();
+			}
+		}
+		return null;
 	}
 	
 	public Boolean agregarProductoAlSistema(Producto p1) {
