@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import interfaces.InterSistema1;
 import interfaces.InterSistema2;
 import interfaces.InterSistema3;
@@ -104,13 +106,15 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 
 	@Override
-	public Boolean agregaUnUsuarioAlSistema(Usuario administrador){
-		if(listaDeUsuarios.contains(administrador))
-			return false;
-		else
-			listaDeUsuarios.add(administrador);
-			return true;
+	public Boolean agregaUnUsuarioAlSistema(Usuario user){
+		try {
+			return listaDeUsuarios.add(user);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Error");
+		}
+		return false;
 	}
+	
 
 	@Override
 	public Boolean eliminarUsuario(String usrName) {
