@@ -173,7 +173,7 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 		Compra nuevaCompra = new Compra(idCompra, usuario);
 		nuevaCompra.agregarProductoALaCompra(producto);		
 	}
-	
+	//andres, si estas leyendo esto, aguante river. 9/12
 	
 	
 }
