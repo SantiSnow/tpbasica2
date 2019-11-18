@@ -177,6 +177,12 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 		return false;
 	}
 	
+	public void verListaDeUsuarios() {
+		for(Usuario i: listaDeUsuarios) {
+			System.out.println(i);
+		}
+	}
+	
 	@Override
 	public Double realizarUnaCompra(Usuario usuario, Producto producto) {
 		Long idCompra = (long) (Math.random() * 999999999) + 1;
@@ -196,6 +202,14 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 		}
 	}
 	
+	//metodos de pago
+	public Boolean pagarEnEfectivo() {
+		return true;
+	}
+	
+	public Boolean pagarConPuntos() {
+		return true;
+	}
 	//andres, si estas leyendo esto, aguante river. 9/12
 	
 }

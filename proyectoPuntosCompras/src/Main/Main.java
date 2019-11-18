@@ -18,6 +18,8 @@ public class Main {
 		//administrador ya creado en el sistema
 		Usuario admin = new Administrador ("Admin1", "Contraseña123", 1111111L, 9000, false);
 		sistema.agregaUnUsuarioAlSistema(admin);
+		//cliente ya creado
+		Usuario cliente = new Cliente ("Cliente1", "Contraseña123", 1222222L, 50, false);
 		
 		//scaner de teclado
 		Scanner teclado = new Scanner (System.in);
@@ -82,8 +84,13 @@ public class Main {
 								for(Producto i: sistema.listaDeProductos) {
 									if(i.getId().equals(idProductoElegido)) {
 										System.out.println("El precio de la compra es de " + sistema.realizarUnaCompra(nuevoUsuario, i));
-										JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos");
-										
+										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+										if(opcionDePago.equals(1)) {
+											
+										}
+										else {
+											
+										}
 									}
 								}
 						}
@@ -118,11 +125,97 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					JOptionPane.showMessageDialog(null, "Como administrador, puede realizar las siguientes tareas: ");
 					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para ver la lista de productos"+"\nIngrese 2 para realizar una compra"+
-					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"));
+					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
+					switch (opcionesParaElMenuAdmin) {
+						case 1:
+							sistema.mostrarLosProductos();
+							System.out.println(" ");
+							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
+							Long productoElegido = teclado.nextLong();
+							for(Producto i: sistema.listaDeProductos) {
+								if(i.getId().equals(productoElegido)) {
+									System.out.println("El precio de la compra es de " + sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i));
+									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+									if(opcionDePago.equals(1)) {
+										
+									}
+									else {
+										
+									}
+								}
+							}
+							break;
+						case 2:
+							sistema.mostrarLosProductos();
+							System.out.println(" ");
+							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
+							Long productoElegido2 = teclado.nextLong();
+							
+							break;
+						case 3:
+							String nombreUrsEliminar = JOptionPane.showInputDialog("Ingrese el nombre del usuario a eliminar");
+							if(sistema.eliminarUsuario(nombreUrsEliminar)) {
+								JOptionPane.showMessageDialog(null, "El usuario fue eliminado");
+							}
+							break;
+						case 4:
+							sistema.verListaDeUsuarios();
+							break;
+						case 5:
+							Integer opcionFormateo = Integer.parseInt(JOptionPane.showInputDialog("¿Esta seguro que desea borrar a todos los usuarios, incluido el suyo? Esto no puede deshacerse."+"\nIngrese 1 para borrar"));
+							if(opcionFormateo.equals(1)){
+								sistema.vaciarListaDeUsuarios();
+								JOptionPane.showMessageDialog(null, "Se han eliminado, todos los usuarios del sistema. Reinicie el sistema.");
+							}
+							break;
+						case 6:
+							String nombreNuevoProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto");
+							Double precioNuevoProducto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto"));
+							Long IdProductoNuevo = (long) (Math.random() * 999999999) + 1;
+							Producto productoNuevo = new Producto (nombreNuevoProducto, IdProductoNuevo, precioNuevoProducto);
+							sistema.agregarProductoAlSistema(productoNuevo);
+							break;
+						case 7:
+							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
+							sistema.salirDelSistema(usuarioIngresado, contraseña);
+							break;
+						
+						default:
+							JOptionPane.showMessageDialog(null, "La opcion es incorrecta, intente nuevamente");
+							break;
+					}
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
-					
+					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de Producto ingrese 1"+
+					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
+					switch (opcionesParaElMenuCliente) {
+						case 1:
+							sistema.mostrarLosProductos();
+							System.out.println(" ");
+							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
+							Long productoElegido = teclado.nextLong();
+							
+							
+							
+							Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+								if(opcionDePago.equals(1)) {
+									
+								}
+								else {
+									
+								}
+							break;
+						case 2:
+							JOptionPane.showMessageDialog(null, sistema.conocerCantidadDePuntos(usuarioIngresado, contraseña));
+							break;
+						case 3:
+							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
+							sistema.salirDelSistema(usuarioIngresado, contraseña);
+							break;
+						default:
+							break;
+					}
 				}
 				
 			}
