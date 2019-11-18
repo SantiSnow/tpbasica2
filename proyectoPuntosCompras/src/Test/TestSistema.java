@@ -74,4 +74,19 @@ public class TestSistema {
 		Assert.assertTrue(compra1.agregarProductoALaCompra(producto3));
 	}
 	
+	@Test
+	public void testParaPorbarLaMuestraDeProducto() {
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		
+		Producto producto1 = new Producto ("Gaseosa", 3484854L, 600.0);
+		Producto producto2 = new Producto ("Jugo", 1234141L, 600.0);
+		
+		sistema1.agregarProductoAlSistema(producto1);
+		sistema1.agregarProductoAlSistema(producto2);
+		
+		sistema1.mostrarLosProductos();
+	}
+	
 }

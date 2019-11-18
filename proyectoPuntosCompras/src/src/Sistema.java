@@ -1,7 +1,9 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import interfaces.InterSistema1;
@@ -14,12 +16,14 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	private String nombreDelSistema;
 	public Set <Usuario> listaDeUsuarios;
     public Set <Compra> listaDeCompra;
-	
+    public List <Producto> listaDeProductos;
+    
     //constructor
     public Sistema(String nombreDelSistema) {
 		this.nombreDelSistema = nombreDelSistema;
 		listaDeUsuarios = new HashSet<Usuario>();
 		listaDeCompra = new HashSet<Compra>();
+		listaDeProductos = new ArrayList<Producto>();
 	}
 
     //constructor por defecto
@@ -168,12 +172,23 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 	
 	@Override
-	public void realizarUnaCompra(Usuario usuario, Producto producto) {
+	public Double realizarUnaCompra(Usuario usuario, Producto producto) {
 		Long idCompra = (long) (Math.random() * 999999999) + 1;
 		Compra nuevaCompra = new Compra(idCompra, usuario);
-		nuevaCompra.agregarProductoALaCompra(producto);		
+		nuevaCompra.agregarProductoALaCompra(producto);
+		return nuevaCompra.calcularPrecioFinal();
 	}
-	//andres, si estas leyendo esto, aguante river. 9/12
 	
+	public void agregarProductoAlSistema(Producto p1) {
+		listaDeProductos.add(p1);
+	}
+	
+	public void mostrarLosProductos(){
+		for(Producto i: listaDeProductos) {
+			System.out.println(i);
+		}
+	}
+	
+	//andres, si estas leyendo esto, aguante river. 9/12
 	
 }

@@ -57,12 +57,12 @@ public class Compra implements InterCompra{
 	}
 	@Override
 	public Double calcularPrecioFinal() {
-		Double recibo = 0.0;
+		precioTotal = 0.0;
 		for (Producto producto : listaDeProductos) {
-			recibo+= producto.getPrecio();	
+			precioTotal += producto.getPrecio();	
 		}
 		puntosQueDaLaCompra =(int) (precioTotal /10);
- 		return recibo;
+ 		return precioTotal;
 	}
 	
 }
