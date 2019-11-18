@@ -101,4 +101,40 @@ public class TestSistema {
 		sistema1.mostrarLosProductos();
 	}
 	
+	@Test
+	public void testLoggeoYsalirDelSistema() {
+		//Creamos el sistema y los usuarios para la prueba
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		
+		//Agregamos los usuarios al sistema
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		
+		//Devuelve un true si es que se loggean con exito
+		Assert.assertTrue(sistema1.loggearseComoUsuario("admin1", "1234abcd"));
+		Assert.assertTrue(sistema1.loggearseComoUsuario("cliente1", "1234abcd"));
+		//Devuelve un true si es que salen del sistema con exito
+		Assert.assertTrue(sistema1.salirDelSistema("admin1", "1234abcd"));
+		Assert.assertTrue(sistema1.salirDelSistema("cliente1", "1234abcd"));
+	}
+	
+	@Test
+	public void testVaciamientoDeListaUsuarios() {
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		
+		//Verificamos que la lista contiene usuarios
+		Assert.assertEquals(2, sistema1.conocerTamañoDelSistemaDeUsuarios(), 0.0);
+		
+		//Vaciamos la lista
+		sistema1.vaciarListaDeUsuarios();
+		//Verificamos que la lista se encuentre vacia
+		Assert.assertEquals(0, sistema1.conocerTamañoDelSistemaDeUsuarios(), 0.0);
+	}
 }
