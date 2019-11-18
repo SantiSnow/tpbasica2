@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import interfaces.InterSistema1;
 import interfaces.InterSistema2;
 import interfaces.InterSistema3;
@@ -104,13 +106,15 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 
 	@Override
-	public Boolean agregaUnUsuarioAlSistema(Usuario administrador){
-		if(listaDeUsuarios.contains(administrador))
-			return false;
-		else
-			listaDeUsuarios.add(administrador);
-			return true;
+	public Boolean agregaUnUsuarioAlSistema(Usuario user){
+		try {
+			return listaDeUsuarios.add(user);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Error");
+		}
+		return false;
 	}
+	
 
 	@Override
 	public Boolean eliminarUsuario(String usrName) {
@@ -154,22 +158,18 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 
 	@Override
 	public Integer conocerCantidadDePuntos(String nombreUsuario, String contraseña) {
-		Integer resultado = 0;
-		for(Usuario i: listaDeUsuarios) {
+		for (Usuario i : listaDeUsuarios) {
 			if(i.getNombreDeUsuario().equals(nombreUsuario) && i.getContraseña().equals(contraseña)) {
-				resultado = i.getPuntosAcumulados();
-			}
-			else {
-				resultado = 0;
+				  return i.getPuntosAcumulados();						
 			}
 		}
-		return resultado;
+		return 0;
 	}
 
 	@Override
 	public Boolean salirDelSistema(String nombreDeUsuario, String contraseña) {
 		for(Usuario i: listaDeUsuarios) {
-			if(i.getNombreDeUsuario().equals(nombreDeUsuario) && i.getContraseña().equals(contraseña)){
+			if(i.getNombreDeUsuario().equals(nombreDeUsuario) && i.getContraseña().equals(contraseña) && i.getEstado().equals(true)){
 				i.setEstado(false);
 				return true;
 			}
