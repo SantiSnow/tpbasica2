@@ -113,20 +113,17 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 
 	@Override
-	public Boolean eliminarUsuario(Usuario cliente) {
-		Boolean resultado = false;
+	public Boolean eliminarUsuario(String usrName) {
 		Iterator<Usuario> it = listaDeUsuarios.iterator();
 		while(it.hasNext()) {
-			if(it.next().getNombreDeUsuario().equals(cliente.getNombreDeUsuario())) {
+			if(it.next().getNombreDeUsuario().equals(usrName)) {
 				it.remove();
-				resultado = true;
-			}
-			else {
-				resultado = false;
+				return true;
 			}
 		}
-		return resultado;
+		return false;
 	}
+	
 	@Override
 	public String retornarElTipoDeUsuario(Usuario user) {
 		if(user instanceof Administrador)
@@ -144,6 +141,15 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 			}
 		}
 		return false;
+	}
+	
+	public Usuario retornarElObjetoUsuario(String nombreUsuario, String contraseña) {
+		for(Usuario i: listaDeUsuarios) 
+			if(i.getNombreDeUsuario().equals(nombreUsuario) && i.getContraseña().equals(contraseña)) {
+				i.setEstado(true);
+				return i;	
+			}
+		return null;
 	}
 
 	@Override
@@ -175,6 +181,7 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	public Double realizarUnaCompra(Usuario usuario, Producto producto) {
 		Long idCompra = (long) (Math.random() * 999999999) + 1;
 		Compra nuevaCompra = new Compra(idCompra, usuario);
+		listaDeCompra.add(nuevaCompra);
 		nuevaCompra.agregarProductoALaCompra(producto);
 		return nuevaCompra.calcularPrecioFinal();
 	}

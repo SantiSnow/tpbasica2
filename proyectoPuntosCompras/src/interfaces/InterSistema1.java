@@ -9,7 +9,7 @@ public interface InterSistema1 {
 	//relacionados con los usuarios
 	
 	Boolean agregaUnUsuarioAlSistema(Usuario administrador);
-	Boolean eliminarUsuario(Usuario cliente);
+	Boolean eliminarUsuario(String nombreUsr);
 	Boolean loggearseComoUsuario(String nombreUsuario, String contraseña);
 	Integer conocerCantidadDePuntos(String nombreUsuario, String contraseña);
 	Boolean salirDelSistema(String nombreDeUsuario, String contraseña);

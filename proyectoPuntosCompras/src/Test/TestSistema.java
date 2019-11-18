@@ -38,6 +38,18 @@ public class TestSistema {
 		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(admin1));
 		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(cliente1));
 	}
+
+	@Test
+	public void testeoEncontrarUsuario() {
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		//los agregamos a la lista
+		Assert.assertTrue(sistema1.agregaUnUsuarioAlSistema(admin1));
+		Assert.assertTrue(sistema1.agregaUnUsuarioAlSistema(cliente1));
+		
+		Assert.assertEquals(sistema1.retornarElObjetoUsuario("admin1", "1234abcd"), admin1);
+	}
 	
 	@Test
 	public void testeoParaCrearObjetosYObtenerTamañoDeLasListas() {
