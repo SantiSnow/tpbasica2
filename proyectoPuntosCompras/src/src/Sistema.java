@@ -192,8 +192,8 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 		return nuevaCompra.calcularPrecioFinal();
 	}
 	
-	public void agregarProductoAlSistema(Producto p1) {
-		listaDeProductos.add(p1);
+	public Boolean agregarProductoAlSistema(Producto p1) {
+		return listaDeProductos.add(p1);
 	}
 	
 	public void mostrarLosProductos(){

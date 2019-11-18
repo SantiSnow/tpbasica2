@@ -69,7 +69,7 @@ public class Main {
 			String contraseñaNueva = Integer.toString(JOptionPane.showConfirmDialog(null, pass, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)); 
 			
 			Long idNuevo = (long) (Math.random() * 999999999) + 1;
-			Usuario nuevoUsuario = new Cliente (nuevoNombreUsuario, contraseñaNueva, idNuevo, 500, false);
+			Usuario nuevoUsuario = new Cliente (nuevoNombreUsuario, contraseñaNueva, idNuevo, 50, false);
 			
 			if(sistema.agregaUnUsuarioAlSistema(nuevoUsuario)) {
 				JOptionPane.showMessageDialog(null, "Felicidades, ha sido registrado en el sistema");
@@ -179,7 +179,13 @@ public class Main {
 							Double precioNuevoProducto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto"));
 							Long IdProductoNuevo = (long) (Math.random() * 999999999) + 1;
 							Producto productoNuevo = new Producto (nombreNuevoProducto, IdProductoNuevo, precioNuevoProducto);
-							sistema.agregarProductoAlSistema(productoNuevo);
+								if(sistema.agregarProductoAlSistema(productoNuevo)) {
+									JOptionPane.showMessageDialog(null, "El producto se agrego correctamente");
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Error al agregar el producto");
+								}
+							
 							break;
 						case 7:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
