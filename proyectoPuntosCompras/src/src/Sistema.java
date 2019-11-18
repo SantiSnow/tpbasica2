@@ -158,16 +158,12 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 
 	@Override
 	public Integer conocerCantidadDePuntos(String nombreUsuario, String contraseña) {
-		Integer resultado = 0;
-		for(Usuario i: listaDeUsuarios) {
+		for (Usuario i : listaDeUsuarios) {
 			if(i.getNombreDeUsuario().equals(nombreUsuario) && i.getContraseña().equals(contraseña)) {
-				resultado = i.getPuntosAcumulados();
-			}
-			else {
-				resultado = 0;
+				  return i.getPuntosAcumulados();						
 			}
 		}
-		return resultado;
+		return 0;
 	}
 
 	@Override
