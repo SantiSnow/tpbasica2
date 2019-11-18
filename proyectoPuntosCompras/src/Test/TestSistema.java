@@ -74,7 +74,7 @@ public class TestSistema {
 		//Solamente agregamos dos usuarios a la lista
 		sistema1.agregaUnUsuarioAlSistema(admin1);
 		sistema1.agregaUnUsuarioAlSistema(cliente1);
-		//Verificamos que no lo encuentra
+		//Testeo para comprobar que cliente2 no se encuentra en el sistema
 		Assert.assertEquals(sistema1.retornarElObjetoUsuario("cliente2", "1234abcd"), cliente2);
 	}
 	
