@@ -3,6 +3,7 @@ package Main;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import src.Producto;
 import src.Sistema;
@@ -63,7 +64,8 @@ public class Main {
 		
 		if(opcionInicial == 1) {
 			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario");
-			String contraseñaNueva = JOptionPane.showInputDialog("Ingrese contraseña");
+			JPasswordField pass = new JPasswordField(); 
+			String contraseñaNueva = Integer.toString(JOptionPane.showConfirmDialog(null, pass, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)); 
 			
 			Long idNuevo = (long) (Math.random() * 999999999) + 1;
 			Usuario nuevoUsuario = new Cliente (nuevoNombreUsuario, contraseñaNueva, idNuevo, 500, false);
@@ -103,12 +105,14 @@ public class Main {
 							String contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
 							if(sistema.salirDelSistema(usuarioIngresado, contraseña)) {
 								JOptionPane.showMessageDialog(null, "Ha salido del sistema correctamente");
+								//se necesita un exit
 							}
 						}
 					}
 					else {
 						nuevoUsuario.setEstado(false);
 						JOptionPane.showMessageDialog(null, "Fin del Programa");
+						//se necesita un exit
 					}
 				}
 				while(opcionMenuOSalir == 1);
@@ -177,8 +181,8 @@ public class Main {
 						case 7:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
+							//se necesita un exit
 							break;
-						
 						default:
 							JOptionPane.showMessageDialog(null, "La opcion es incorrecta, intente nuevamente");
 							break;
@@ -215,6 +219,7 @@ public class Main {
 						case 3:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
+							//se necesita un exit
 							break;
 						default:
 							break;
