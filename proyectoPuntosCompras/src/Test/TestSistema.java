@@ -89,6 +89,31 @@ public class TestSistema {
 	}
 	
 	@Test
+	public void testParaVerificarTransaccionDePago() {
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		
+		Producto producto1 = new Producto ("Milanesas", 324234L, 500.0);
+		Producto producto2 = new Producto ("Milanesas", 324234L, 500.0);
+		Producto producto3 = new Producto ("Fernet", 326234L, 700.0);
+		
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		
+		//Verificamos que el valor de los productos sea correcta
+		Assert.assertEquals(500.0d, sistema1.realizarUnaCompra(cliente1, producto2), 0.0);
+		//Verificamos que el pago ha sido realizado
+		Assert.assertEquals("Gracias por su compra, el producto esta en camino!", sistema1.pagarEnEfectivo(500.0d));
+		
+		sistema1.realizarUnaCompra(admin1, producto3);
+		
+		//Verificamos que se pueda pagar con puntos
+		Assert.assertTrue(sistema1.pagarConPuntos(admin1, 700.0d));
+	}
+	
+	
+	@Test
 	public void testParaPorbarLaMuestraDeProducto() {
 		Sistema sistema1 = new Sistema ("sistema1");
 		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
