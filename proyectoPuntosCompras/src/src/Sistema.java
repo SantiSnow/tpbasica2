@@ -169,7 +169,7 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	@Override
 	public Boolean salirDelSistema(String nombreDeUsuario, String contraseña) {
 		for(Usuario i: listaDeUsuarios) {
-			if(i.getNombreDeUsuario().equals(nombreDeUsuario) && i.getContraseña().equals(contraseña)){
+			if(i.getNombreDeUsuario().equals(nombreDeUsuario) && i.getContraseña().equals(contraseña) && i.getEstado().equals(true)){
 				i.setEstado(false);
 				return true;
 			}
