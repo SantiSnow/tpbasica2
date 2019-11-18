@@ -65,6 +65,20 @@ public class TestSistema {
 	}
 	
 	@Test
+	public void testeoEncontrarUsuarioFalse() {
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		Usuario cliente2 = new Cliente("cliente2", "1234abcd", 634789L, 100, false);
+		
+		//Solamente agregamos dos usuarios a la lista
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		//Verificamos que no lo encuentra
+		Assert.assertEquals(sistema1.retornarElObjetoUsuario("cliente2", "1234abcd"), cliente2);
+	}
+	
+	@Test
 	public void testeoParaCrearObjetosYObtenerTamañoDeLasListas() {
 		//creamos objetos
 		Sistema sistema1 = new Sistema ("sistema1");
