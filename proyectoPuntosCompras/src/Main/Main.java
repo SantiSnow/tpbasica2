@@ -21,6 +21,7 @@ public class Main {
 		sistema.agregaUnUsuarioAlSistema(admin);
 		//cliente ya creado
 		Usuario cliente = new Cliente ("Cliente1", "Contraseña123", 1222222L, 50, false);
+		sistema.agregaUnUsuarioAlSistema(cliente);
 		
 		//scaner de teclado
 		Scanner teclado = new Scanner (System.in);
@@ -60,7 +61,7 @@ public class Main {
 		
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
-		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Para comenzar, ingrese 1 si desea Registrarse, o 2 si ya tiene usuario administrador"));
+		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Para comenzar, ingrese 1 si desea Registrarse, o 2 si ya tiene usuario creado"));
 		
 		if(opcionInicial == 1) {
 			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario");
@@ -68,7 +69,7 @@ public class Main {
 			String contraseñaNueva = Integer.toString(JOptionPane.showConfirmDialog(null, pass, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)); 
 			
 			Long idNuevo = (long) (Math.random() * 999999999) + 1;
-			Usuario nuevoUsuario = new Cliente (nuevoNombreUsuario, contraseñaNueva, idNuevo, 500, false);
+			Usuario nuevoUsuario = new Cliente (nuevoNombreUsuario, contraseñaNueva, idNuevo, 50, false);
 			
 			if(sistema.agregaUnUsuarioAlSistema(nuevoUsuario)) {
 				JOptionPane.showMessageDialog(null, "Felicidades, ha sido registrado en el sistema");
@@ -129,6 +130,8 @@ public class Main {
 				if(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña) instanceof Administrador){
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					JOptionPane.showMessageDialog(null, "Como administrador, puede realizar las siguientes tareas: ");
+					//se necesita un do while aqui
+					
 					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 comprar"+"\nIngrese 2 para ver la lista de productos"+
 					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
 					switch (opcionesParaElMenuAdmin) {
@@ -176,7 +179,13 @@ public class Main {
 							Double precioNuevoProducto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto"));
 							Long IdProductoNuevo = (long) (Math.random() * 999999999) + 1;
 							Producto productoNuevo = new Producto (nombreNuevoProducto, IdProductoNuevo, precioNuevoProducto);
-							sistema.agregarProductoAlSistema(productoNuevo);
+								if(sistema.agregarProductoAlSistema(productoNuevo)) {
+									JOptionPane.showMessageDialog(null, "El producto se agrego correctamente");
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "Error al agregar el producto");
+								}
+							
 							break;
 						case 7:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
@@ -190,6 +199,8 @@ public class Main {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
+					//se necesita un do while aqui
+					
 					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de Producto ingrese 1"+
 					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
 					switch (opcionesParaElMenuCliente) {
@@ -206,6 +217,7 @@ public class Main {
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
+										JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino" + "\n Ha sumado "+ precioFinal/10 +" puntos con su compra");
 									}
 									else {
 										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña),precioFinal);
@@ -214,12 +226,13 @@ public class Main {
 							}
 							break;
 						case 2:
-							JOptionPane.showMessageDialog(null, sistema.conocerCantidadDePuntos(usuarioIngresado, contraseña));
+							JOptionPane.showMessageDialog(null, "Los puntos del usuario son: "+sistema.conocerCantidadDePuntos(usuarioIngresado, contraseña));
 							break;
 						case 3:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
 							//se necesita un exit
+							
 							break;
 						default:
 							break;
