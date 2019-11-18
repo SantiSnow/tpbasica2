@@ -7,8 +7,4 @@ public interface InterCompra {
 	//metodos de compra y firma deben tener
 	public Boolean agregarProductoALaCompra(Producto producto);
 	public Double calcularPrecioFinal();
-	//metodos no usados para otra clase
-//	public Boolean pagarConPuntos();
-//	public Boolean pagarConEfectivo();
-//	public Boolean sumarPuntosPorLaCompra();
 }

@@ -90,8 +90,13 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 
 	@Override
 	public String vaciarListaDeUsuarios() {
+		try {
 		listaDeUsuarios.clear();
-		return "La lista ha sido vaciada";
+		return "Lista borrada";
+		}
+		catch (Exception e) {
+			return "Error al borrar la lista";
+		}
 	}
 
 	@Override
@@ -161,9 +166,14 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 		}
 		return false;
 	}
+	
 	@Override
 	public void realizarUnaCompra(Usuario usuario, Producto producto) {
-		
+		Long idCompra = (long) (Math.random() * 999999999) + 1;
+		Compra nuevaCompra = new Compra(idCompra, usuario);
+		nuevaCompra.agregarProductoALaCompra(producto);		
 	}
+	
+	
 	
 }
