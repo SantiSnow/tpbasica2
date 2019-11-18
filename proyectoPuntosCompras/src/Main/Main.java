@@ -83,13 +83,14 @@ public class Main {
 							Long idProductoElegido = teclado.nextLong();
 								for(Producto i: sistema.listaDeProductos) {
 									if(i.getId().equals(idProductoElegido)) {
-										System.out.println("El precio de la compra es de " + sistema.realizarUnaCompra(nuevoUsuario, i));
+										Double precioFinal = sistema.realizarUnaCompra(nuevoUsuario, i);
+										System.out.println("El precio de la compra es de " + precioFinal);
 										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
 										if(opcionDePago.equals(1)) {
-											
+											sistema.pagarEnEfectivo(precioFinal);
 										}
 										else {
-											
+											sistema.pagarConPuntos(nuevoUsuario, precioFinal);
 										}
 									}
 								}
@@ -124,7 +125,7 @@ public class Main {
 				if(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña) instanceof Administrador){
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					JOptionPane.showMessageDialog(null, "Como administrador, puede realizar las siguientes tareas: ");
-					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para ver la lista de productos"+"\nIngrese 2 para realizar una compra"+
+					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 comprar"+"\nIngrese 2 para ver la lista de productos"+
 					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
 					switch (opcionesParaElMenuAdmin) {
 						case 1:
@@ -134,13 +135,14 @@ public class Main {
 							Long productoElegido = teclado.nextLong();
 							for(Producto i: sistema.listaDeProductos) {
 								if(i.getId().equals(productoElegido)) {
-									System.out.println("El precio de la compra es de " + sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i));
+									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
+									System.out.println("El precio de la compra es de " + precioFinal);
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
-										
+										sistema.pagarEnEfectivo(precioFinal);
 									}
 									else {
-										
+										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), precioFinal);
 									}
 								}
 							}
@@ -148,9 +150,6 @@ public class Main {
 						case 2:
 							sistema.mostrarLosProductos();
 							System.out.println(" ");
-							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
-							Long productoElegido2 = teclado.nextLong();
-							
 							break;
 						case 3:
 							String nombreUrsEliminar = JOptionPane.showInputDialog("Ingrese el nombre del usuario a eliminar");
@@ -196,15 +195,19 @@ public class Main {
 							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
 							Long productoElegido = teclado.nextLong();
 							
-							
-							
-							Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
-								if(opcionDePago.equals(1)) {
-									
+							for(Producto i: sistema.listaDeProductos) {
+								if(i.getId().equals(productoElegido)) {
+									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
+									System.out.println("El precio de la compra es de " + precioFinal);
+									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+									if(opcionDePago.equals(1)) {
+										sistema.pagarEnEfectivo(precioFinal);
+									}
+									else {
+										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña),precioFinal);
+									}
 								}
-								else {
-									
-								}
+							}
 							break;
 						case 2:
 							JOptionPane.showMessageDialog(null, sistema.conocerCantidadDePuntos(usuarioIngresado, contraseña));

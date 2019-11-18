@@ -203,12 +203,16 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 	
 	//metodos de pago
-	public Boolean pagarEnEfectivo() {
-		return true;
+	public String pagarEnEfectivo(Double precio) {
+		return "Gracias por su compra, el producto esta en camino!";
 	}
 	
-	public Boolean pagarConPuntos() {
-		return true;
+	public Boolean pagarConPuntos(Usuario usr, Double precio) {
+		if(usr.getPuntosAcumulados()>precio/10) {
+			usr.setPuntosAcumulados((int) -(precio/10));
+			return true;
+		}
+		return false;
 	}
 	//andres, si estas leyendo esto, aguante river. 9/12
 	
