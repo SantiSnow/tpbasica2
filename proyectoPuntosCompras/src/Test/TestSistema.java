@@ -34,9 +34,6 @@ public class TestSistema {
 		//los agregamos a la lista
 		Assert.assertTrue(sistema1.agregaUnUsuarioAlSistema(admin1));
 		Assert.assertTrue(sistema1.agregaUnUsuarioAlSistema(cliente1));
-		//testeamos que no puedan agregarse repetidos
-		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(admin1));
-		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(cliente1));
 		//Testeo de eliminar un usuario
 		Assert.assertTrue(sistema1.eliminarUsuario("cliente1"));
 	}
