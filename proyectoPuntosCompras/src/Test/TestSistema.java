@@ -26,7 +26,7 @@ public class TestSistema {
 	}
 	
 	@Test
-	public void testeoCreacionDeUsuariosYRegistroYeliminacion() {
+	public void testeoCreacionDeUsuariosYRegistroYeliminacionTrue() {
 		//creamos objetos
 		Sistema sistema1 = new Sistema ("sistema1");
 		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
@@ -39,6 +39,20 @@ public class TestSistema {
 		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(cliente1));
 		//Testeo de eliminar un usuario
 		Assert.assertTrue(sistema1.eliminarUsuario("cliente1"));
+	}
+	@Test
+	public void testeoNoDejarRegistrarUsuariosRepetidos() {
+		//creamos objetos
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+		//Agregamo usuario para verificar posteriormente
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		//testeamos que no puedan agregarse repetidos
+		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(admin1));
+		Assert.assertFalse(sistema1.agregaUnUsuarioAlSistema(cliente1));
+		
 	}
 
 	@Test
