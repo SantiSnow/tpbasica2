@@ -61,11 +61,11 @@ public class Main {
 		
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
-		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese:\n1_Si desea Registrarse\n2_Si ya tiene usuario creado"));
+		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese:\n1_Si desea Registrarse\n2_Si desea iniciar sesion"));
 
 		
 		if(opcionInicial == 1) {
-			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario");
+			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario: ");
 			JPasswordField pass = new JPasswordField(); 
 			String contraseñaNueva = Integer.toString(JOptionPane.showConfirmDialog(null, pass, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)); 
 			
@@ -75,21 +75,21 @@ public class Main {
 			if(sistema.agregaUnUsuarioAlSistema(nuevoUsuario)) {
 				JOptionPane.showMessageDialog(null, "Felicidades, ha sido registrado en el sistema");
 				nuevoUsuario.setEstado(true);
-				Integer opcionMenuOSalir = Integer.parseInt(JOptionPane.showInputDialog("presione 1 para mostrar el menu inicio u otro numero para salir"));
+				Integer opcionMenuOSalir = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para mostrar el menu inicio\nOtro numero para salir"));
 				do {
 					if(opcionMenuOSalir == 1) {
-						Integer opcionesDelInicio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para realizar una compra, 2 para ver sus datos, o 3 para salir: "));
+						Integer opcionesDelInicio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para realizar una compra\n2_Para ver sus datos\n3_Para salir "));
 						if(opcionesDelInicio == 1) {
-							JOptionPane.showMessageDialog(null, "Para comprar, vea en la consola los productos e ingrese su numero de id en pantalla.");
+							JOptionPane.showMessageDialog(null, "Para comprar debe ver en la consola los productos e ingrese su numero de id en pantalla.");
 							sistema.mostrarLosProductos();
 							System.out.println(" ");
-							System.out.println("Ingrese el numero id del producto deseado");
+							System.out.print("Ingrese el numero id del producto deseado: ");
 							Long idProductoElegido = teclado.nextLong();
 								for(Producto i: sistema.listaDeProductos) {
 									if(i.getId().equals(idProductoElegido)) {
 										Double precioFinal = sistema.realizarUnaCompra(nuevoUsuario, i);
 										System.out.println("El precio de la compra es de " + precioFinal);
-										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 										if(opcionDePago.equals(1)) {
 											sistema.pagarEnEfectivo(precioFinal);
 											JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino");
@@ -133,7 +133,7 @@ public class Main {
 		}
 		else if(opcionInicial == 2) {
 			String usuarioIngresado = JOptionPane.showInputDialog("Ingrese su usuario:");
-			String contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
+			String contraseña = JOptionPane.showInputDialog("Ingrese contraseña:");
 			
 			if(sistema.loggearseComoUsuario(usuarioIngresado, contraseña)) {
 				if(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña) instanceof Administrador){
@@ -141,8 +141,8 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Como administrador, puede realizar las siguientes tareas: ");
 					//se necesita un do while aqui que loopee el menu de opciones
 					do {
-					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 comprar"+"\nIngrese 2 para ver la lista de productos"+
-					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
+					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Comprar"+"\n2_Para ver la lista de productos"+
+					"\n3_Para eliminar un usuario"+"\n4_Para ver la lista de usuarios" + "\n5_Para vaciar la lista de usuarios" + "\n6_Para agregar un producto"+"\n7_Para salir"));
 					switch (opcionesParaElMenuAdmin) {
 						case 1:
 							sistema.mostrarLosProductos();
@@ -153,7 +153,7 @@ public class Main {
 								if(i.getId().equals(productoElegido)) {
 									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
 									System.out.println("El precio de la compra es de " + precioFinal);
-									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
 									}
@@ -168,7 +168,7 @@ public class Main {
 							System.out.println(" ");
 							break;
 						case 3:
-							String nombreUrsEliminar = JOptionPane.showInputDialog("Ingrese el nombre del usuario a eliminar");
+							String nombreUrsEliminar = JOptionPane.showInputDialog("Ingrese el nombre del usuario a eliminar:");
 							if(sistema.eliminarUsuario(nombreUrsEliminar)) {
 								JOptionPane.showMessageDialog(null, "El usuario fue eliminado");
 							}
@@ -215,20 +215,20 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					//se necesita un do while aqui que loopee el menu hasta que el usuario decida salir
 					do {
-					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de productos ingrese 1"+
-					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));					
+					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos\nIngrese:\n1_Para realizar una compra"+
+					"\n2_Para ver sus datos"+"\n3_Para salir del sistema"));					
 					switch (opcionesParaElMenuCliente) {
 						case 1:
 							sistema.mostrarLosProductos();
 							System.out.println(" ");
-							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
+							System.out.print("Ingrese el Id del producto a coprar y luego el metodo de pago: ");
 							Long productoElegido = teclado.nextLong();
 							
 							for(Producto i: sistema.listaDeProductos) {
 								if(i.getId().equals(productoElegido)) {
 									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
 									System.out.println("El precio de la compra es de " + precioFinal);
-									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
+									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
 										JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino" + "\n Ha sumado "+ precioFinal/10 +" puntos con su compra");
