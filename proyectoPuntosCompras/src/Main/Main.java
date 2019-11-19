@@ -143,12 +143,12 @@ public class Main {
 					//se necesita un do while aqui que loopee el menu de opciones
 					do {
 					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Comprar"+"\n2_Para ver la lista de productos"+
-					"\n3_Para eliminar un usuario"+"\n4_Para ver la lista de usuarios" + "\n5_Para vaciar la lista de usuarios" + "\n6_Para agregar un producto"+"\n7_Para salir"));
+					"\n3_Para eliminar un usuario"+"\n4_Para ver la lista de usuarios" + "\n5_Para vaciar la lista de usuarios" + "\n6_Para agregar un producto"+"\n7_Para ver sus datos"+"\n8_Para salir"));
 					switch (opcionesParaElMenuAdmin) {
 						case 1:
 							sistema.mostrarLosProductos();
 							System.out.println(" ");
-							System.out.println("Para comprar, ingrese el Id del producto, y luego el metodo de pago.");
+							System.out.print("Ingrese el numero id del producto deseado: ");
 							Long productoElegido = teclado.nextLong();
 							for(Producto i: sistema.listaDeProductos) {
 								if(i.getId().equals(productoElegido)) {
@@ -187,8 +187,8 @@ public class Main {
 							}
 							break;
 						case 6:
-							String nombreNuevoProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto");
-							Double precioNuevoProducto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto"));
+							String nombreNuevoProducto = JOptionPane.showInputDialog("Ingrese el nombre del producto:");
+							Double precioNuevoProducto = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio del producto:"));
 							Long IdProductoNuevo = (long) (Math.random() * 999999999) + 1;
 							Producto productoNuevo = new Producto (nombreNuevoProducto, IdProductoNuevo, precioNuevoProducto);
 								if(sistema.agregarProductoAlSistema(productoNuevo)) {
@@ -200,6 +200,9 @@ public class Main {
 							
 							break;
 						case 7:
+							JOptionPane.showMessageDialog(null, admin.mostrarPuntosYId());
+							break;
+						case 8:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
 							//salida del programa
@@ -218,12 +221,12 @@ public class Main {
 					//se necesita un do while aqui que loopee el menu hasta que el usuario decida salir
 					do {
 					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos\nIngrese:\n1_Para realizar una compra"+
-					"\n2_Para ver sus datos"+"\n3_Para salir del sistema"));					
+					"\n2_Para ver sus datos"+"\n3_Para ver sus datos"+"\n4_Para salir del sistema"));					
 					switch (opcionesParaElMenuCliente) {
 						case 1:
 							sistema.mostrarLosProductos();
 							System.out.println(" ");
-							System.out.print("Ingrese el Id del producto a coprar y luego el metodo de pago: ");
+							System.out.print("Ingrese el Id del producto a comprar y luego el metodo de pago: ");
 							Long productoElegido = teclado.nextLong();
 							
 							for(Producto i: sistema.listaDeProductos) {
@@ -246,6 +249,9 @@ public class Main {
 							JOptionPane.showMessageDialog(null, "Los puntos del usuario son: "+sistema.conocerCantidadDePuntos(usuarioIngresado, contraseña));
 							break;
 						case 3:
+							JOptionPane.showMessageDialog(null, cliente.mostrarPuntosYId());
+							break;
+						case 4:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
 							//se necesita un exit
