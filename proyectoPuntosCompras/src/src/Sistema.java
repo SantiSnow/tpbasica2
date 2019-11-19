@@ -221,4 +221,10 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	}
 	//andres, si estas leyendo esto, aguante river. 9/12
 	
+	public void sumarPuntosPorComprar(Usuario nuevoUsuario, Double pagarEnEfectivo) {
+		Integer nuevosPuntos = (int) (nuevoUsuario.getPuntosAcumulados() + (pagarEnEfectivo/10));
+		nuevoUsuario.setPuntosAcumulados(nuevosPuntos);
+		
+	}
+	
 }
