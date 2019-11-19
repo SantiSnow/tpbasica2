@@ -232,7 +232,7 @@ public class Main {
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
 							//se necesita un exit
-							
+							System.exit(0);
 							break;
 						default:
 							break;
