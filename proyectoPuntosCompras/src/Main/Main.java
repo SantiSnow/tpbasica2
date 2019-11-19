@@ -92,6 +92,7 @@ public class Main {
 										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 										if(opcionDePago.equals(1)) {
 											sistema.pagarEnEfectivo(precioFinal);
+											sistema.sumarPuntosPorComprar(nuevoUsuario, precioFinal );
 											JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino");
 										}
 										else {
@@ -156,6 +157,7 @@ public class Main {
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
+										sistema.sumarPuntosPorComprar(admin, precioFinal );
 									}
 									else {
 										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), precioFinal);
@@ -231,6 +233,7 @@ public class Main {
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
+										sistema.sumarPuntosPorComprar(cliente, precioFinal );
 										JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino" + "\n Ha sumado "+ precioFinal/10 +" puntos con su compra");
 									}
 									else {
