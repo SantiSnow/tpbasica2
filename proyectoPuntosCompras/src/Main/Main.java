@@ -91,9 +91,15 @@ public class Main {
 										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 para pagar con Efectivo o 2 para pagar con puntos"));
 										if(opcionDePago.equals(1)) {
 											sistema.pagarEnEfectivo(precioFinal);
+											JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino");
 										}
 										else {
-											sistema.pagarConPuntos(nuevoUsuario, precioFinal);
+											if(sistema.pagarConPuntos(nuevoUsuario, precioFinal)) {
+												JOptionPane.showMessageDialog(null, "Gracias, el producto esta en camino");
+											}
+											else {
+												JOptionPane.showMessageDialog(null, "Error, no tiene suficientes puntos, debe pagar en efectivo");
+											}
 										}
 									}
 								}
