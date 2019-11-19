@@ -22,7 +22,8 @@ public class Main {
 		//cliente ya creado
 		Usuario cliente = new Cliente ("Cliente1", "Contraseña123", 1222222L, 50, false);
 		sistema.agregaUnUsuarioAlSistema(cliente);
-
+		Usuario cliente2 = new Cliente ("Cliente", "Contraseñaabc", 1111122L, 50, false);
+		sistema.agregaUnUsuarioAlSistema(cliente2);
 		
 		//scaner de teclado
 		Scanner teclado = new Scanner (System.in);
@@ -234,7 +235,7 @@ public class Main {
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
-										sistema.sumarPuntosPorComprar(cliente, precioFinal );
+										sistema.sumarPuntosPorComprar(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), precioFinal );
 										JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino" + "\n Ha sumado "+ precioFinal/10 +" puntos con su compra");
 									}
 									else {
