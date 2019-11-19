@@ -239,7 +239,12 @@ public class Main {
 										JOptionPane.showMessageDialog(null, "Gracias por su compra, el producto esta en camino" + "\n Ha sumado "+ precioFinal/10 +" puntos con su compra");
 									}
 									else {
-										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña),precioFinal);
+										if(sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña),precioFinal)) {
+											JOptionPane.showMessageDialog(null, "Gracias Por su compra, el producto esta en camino");
+										}
+										else {
+											JOptionPane.showMessageDialog(null, "No tiene suficientes puntos para realizar la compra");
+										}
 									}
 								}
 							}
