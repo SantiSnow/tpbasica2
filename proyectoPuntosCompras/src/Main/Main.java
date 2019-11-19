@@ -104,16 +104,18 @@ public class Main {
 						else {
 							String usuarioIngresado = JOptionPane.showInputDialog("Ingrese su usuario:");
 							String contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
-							if(sistema.salirDelSistema(usuarioIngresado, contraseña)) {
+							//if(sistema.salirDelSistema(usuarioIngresado, contraseña)) {
 								JOptionPane.showMessageDialog(null, "Ha salido del sistema correctamente");
-								//se necesita un exit
-							}
+								//Esta es la salida del programa
+								System.exit(0);
+							//}
 						}
 					}
 					else {
 						nuevoUsuario.setEstado(false);
 						JOptionPane.showMessageDialog(null, "Fin del Programa");
-						//se necesita un exit
+						//Esta es la salida del programa
+						System.exit(0);
 					}
 				}
 				while(opcionMenuOSalir == 1);
@@ -134,6 +136,7 @@ public class Main {
 					
 					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 comprar"+"\nIngrese 2 para ver la lista de productos"+
 					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
+					do {
 					switch (opcionesParaElMenuAdmin) {
 						case 1:
 							sistema.mostrarLosProductos();
@@ -163,6 +166,7 @@ public class Main {
 							if(sistema.eliminarUsuario(nombreUrsEliminar)) {
 								JOptionPane.showMessageDialog(null, "El usuario fue eliminado");
 							}
+							
 							break;
 						case 4:
 							sistema.verListaDeUsuarios();
@@ -191,11 +195,13 @@ public class Main {
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
 							//se necesita un exit
+							System.exit(0);
 							break;
 						default:
 							JOptionPane.showMessageDialog(null, "La opcion es incorrecta, intente nuevamente");
 							break;
 					}
+					}while(opcionesParaElMenuAdmin>=1 && opcionesParaElMenuAdmin<=7 );
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
@@ -203,6 +209,7 @@ public class Main {
 					
 					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de Producto ingrese 1"+
 					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
+					do {
 					switch (opcionesParaElMenuCliente) {
 						case 1:
 							sistema.mostrarLosProductos();
@@ -231,12 +238,14 @@ public class Main {
 						case 3:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
-							//se necesita un exit
+							//Esta es la salida del programa
+							System.exit(0);
 							
 							break;
 						default:
 							break;
 					}
+					}while(opcionesParaElMenuCliente > 0 && opcionesParaElMenuCliente< 4);
 				}
 				
 			}
