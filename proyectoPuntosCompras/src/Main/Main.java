@@ -62,6 +62,7 @@ public class Main {
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
 		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese:\n1_Si desea Registrarse\n2_Si ya tiene usuario creado"));
+
 		
 		if(opcionInicial == 1) {
 			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario");
@@ -108,11 +109,13 @@ public class Main {
 							JOptionPane.showMessageDialog(null, nuevoUsuario.mostrarPuntosYId());
 						}
 						else {
+
 							if(sistema.salirDelSistema(nuevoNombreUsuario, contraseñaNueva)) {
 								JOptionPane.showMessageDialog(null, "Ha salido del sistema correctamente");
 								//salida del programa
 								System.exit(0);
 							}
+
 						}
 					}
 					else {
@@ -169,6 +172,7 @@ public class Main {
 							if(sistema.eliminarUsuario(nombreUrsEliminar)) {
 								JOptionPane.showMessageDialog(null, "El usuario fue eliminado");
 							}
+							
 							break;
 						case 4:
 							sistema.verListaDeUsuarios();
@@ -212,7 +216,7 @@ public class Main {
 					//se necesita un do while aqui que loopee el menu hasta que el usuario decida salir
 					do {
 					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de productos ingrese 1"+
-					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
+					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));					
 					switch (opcionesParaElMenuCliente) {
 						case 1:
 							sistema.mostrarLosProductos();
