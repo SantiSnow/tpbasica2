@@ -25,7 +25,7 @@ public class Main {
 		Usuario cliente2 = new Cliente ("Cliente", "Contraseñaabc", 1111122L, 50, false);
 		sistema.agregaUnUsuarioAlSistema(cliente2);
 		
-		//scaner de teclado
+		//scaner de teclado.
 		Scanner teclado = new Scanner (System.in);
 		//productos pre-cargados en el sistema
 		Producto producto1 = new Producto ("Gaseosa", 3484854L, 600.0);
