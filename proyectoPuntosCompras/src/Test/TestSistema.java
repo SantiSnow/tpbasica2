@@ -63,20 +63,7 @@ public class TestSistema {
 		
 		Assert.assertEquals(sistema1.retornarElObjetoUsuario("admin1", "1234abcd"), admin1);
 	}
-	
-	@Test
-	public void testeoEncontrarUsuarioFalse() {
-		Sistema sistema1 = new Sistema ("sistema1");
-		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
-		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
-		Usuario cliente2 = new Cliente("cliente2", "1234abcd", 634789L, 100, false);
-		
-		//Solamente agregamos dos usuarios a la lista
-		sistema1.agregaUnUsuarioAlSistema(admin1);
-		sistema1.agregaUnUsuarioAlSistema(cliente1);
-		//Testeo para comprobar que cliente2 no se encuentra en el sistema
-		Assert.assertEquals(sistema1.retornarElObjetoUsuario("cliente2", "1234abcd"), cliente2);	
-	}
+
 	
 	@Test
 	public void testeoParaCrearObjetosYObtenerTamañoDeLasListas() {
@@ -93,27 +80,6 @@ public class TestSistema {
 	}
 	
 	@Test
-	public void testParaProbarLaVentadeProductos1() {
-		//creamos los usuarios para meterlos al sistema
-		Sistema sistema1 = new Sistema ("sistema1");
-		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
-		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
-		
-		Producto producto1 = new Producto ("Milanesas", 324234L, 500.0);
-		Producto producto2 = new Producto ("Milanesas", 324234L, 500.0);
-		Producto producto3 = new Producto ("Milanesas", 324234L, 500.0);
-		
-		sistema1.agregaUnUsuarioAlSistema(admin1);
-		sistema1.agregaUnUsuarioAlSistema(cliente1);
-		
-		//creamos una compra nueva
-		Compra compra1 = new Compra (85449L, cliente1);
-		Assert.assertTrue(compra1.agregarProductoALaCompra(producto1));
-		Assert.assertTrue(compra1.agregarProductoALaCompra(producto2));
-		Assert.assertTrue(compra1.agregarProductoALaCompra(producto3));
-	}
-	
-	@Test
 	public void testParaVerificarTransaccionDePago() {
 		Sistema sistema1 = new Sistema ("sistema1");
 		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
@@ -125,6 +91,9 @@ public class TestSistema {
 		
 		sistema1.agregaUnUsuarioAlSistema(admin1);
 		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		sistema1.agregarProductoAlSistema(producto2);
+		
+		sistema1.loggearseComoUsuario("cliente1", "1234abcd");
 		
 		//Verificamos que el valor de los productos sea correcta
 		Assert.assertEquals(500.0, sistema1.realizarUnaCompra(cliente1, producto2), 0.0);
