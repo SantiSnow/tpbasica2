@@ -136,8 +136,8 @@ public class Main {
 				if(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña) instanceof Administrador){
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					JOptionPane.showMessageDialog(null, "Como administrador, puede realizar las siguientes tareas: ");
-					//se necesita un do while aqui
-					
+					//se necesita un do while aqui que loopee el menu de opciones
+					do {
 					Integer opcionesParaElMenuAdmin = Integer.parseInt(JOptionPane.showInputDialog("Ingrese 1 comprar"+"\nIngrese 2 para ver la lista de productos"+
 					"\nIngrese 3 para eliminar un usuario"+"\nIngrese 4 para ver la lista de usuarios" + "\nIngrese 5 para vaciar la lista de usuarios" + "\nIngrese 6 para agregar un producto"+"\nIngrese 7 para salir"));
 					switch (opcionesParaElMenuAdmin) {
@@ -203,12 +203,15 @@ public class Main {
 							JOptionPane.showMessageDialog(null, "La opcion es incorrecta, intente nuevamente");
 							break;
 					}
+					}
+					while(opcionInicial <= 2);
+					//hasta aqui
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
 					//se necesita un do while aqui
-					
-					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de Producto ingrese 1"+
+					do {
+					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de productos ingrese 1"+
 					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
 					switch (opcionesParaElMenuCliente) {
 						case 1:
@@ -242,8 +245,12 @@ public class Main {
 							System.exit(0);
 							break;
 						default:
+							JOptionPane.showMessageDialog(null, "La opcion es incorrecta");
 							break;
 					}
+					}
+					while(opcionInicial <= 2);
+					//hasta aqui
 				}
 				
 			}
