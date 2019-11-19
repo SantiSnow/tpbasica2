@@ -108,11 +108,10 @@ public class Main {
 							JOptionPane.showMessageDialog(null, nuevoUsuario.mostrarPuntosYId());
 						}
 						else {
-							String usuarioIngresado = JOptionPane.showInputDialog("Ingrese su usuario:");
-							String contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
-							if(sistema.salirDelSistema(usuarioIngresado, contraseña)) {
+							if(sistema.salirDelSistema(nuevoNombreUsuario, contraseñaNueva)) {
 								JOptionPane.showMessageDialog(null, "Ha salido del sistema correctamente");
-								//se necesita un exit
+								//salida del programa
+								System.exit(0);
 							}
 						}
 					}
@@ -120,6 +119,7 @@ public class Main {
 						nuevoUsuario.setEstado(false);
 						JOptionPane.showMessageDialog(null, "Fin del Programa");
 						//se necesita un exit
+						System.exit(0);
 					}
 				}
 				while(opcionMenuOSalir == 1);
@@ -196,7 +196,8 @@ public class Main {
 						case 7:
 							JOptionPane.showMessageDialog(null, "Saliendo del sistema, hasta pronto");
 							sistema.salirDelSistema(usuarioIngresado, contraseña);
-							//se necesita un exit
+							//salida del programa
+							System.exit(0);
 							break;
 						default:
 							JOptionPane.showMessageDialog(null, "La opcion es incorrecta, intente nuevamente");
