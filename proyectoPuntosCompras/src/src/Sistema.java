@@ -214,7 +214,8 @@ public class Sistema implements InterSistema1, InterSistema2, InterSistema3{
 	
 	public Boolean pagarConPuntos(Usuario usr, Double precio) {
 		if(usr.getPuntosAcumulados()>precio/10) {
-			usr.setPuntosAcumulados((int) -(precio/10));
+			Integer nuevosPuntos = (int) (usr.getPuntosAcumulados() - (precio/10));
+			usr.setPuntosAcumulados(nuevosPuntos);
 			return true;
 		}
 		return false;
