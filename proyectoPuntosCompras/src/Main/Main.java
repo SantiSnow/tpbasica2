@@ -205,11 +205,11 @@ public class Main {
 					}
 					}
 					while(opcionInicial <= 2);
-					//hasta aqui
+					//hasta aqui 
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido: "+ usuarioIngresado + " al sistema de compras");
-					//se necesita un do while aqui
+					//se necesita un do while aqui que loopee el menu hasta que el usuario decida salir
 					do {
 					Integer opcionesParaElMenuCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Gracias por elegirnos, si desea ver la lista de productos ingrese 1"+
 					"\nIngrese 2 para ver sus datos"+"\nIngrese 3 para salir del sistema"));
