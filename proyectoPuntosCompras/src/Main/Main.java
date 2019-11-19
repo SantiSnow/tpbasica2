@@ -22,6 +22,7 @@ public class Main {
 		//cliente ya creado
 		Usuario cliente = new Cliente ("Cliente1", "Contraseña123", 1222222L, 50, false);
 		sistema.agregaUnUsuarioAlSistema(cliente);
+
 		
 		//scaner de teclado
 		Scanner teclado = new Scanner (System.in);
