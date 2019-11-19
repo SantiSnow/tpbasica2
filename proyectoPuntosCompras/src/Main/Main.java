@@ -61,7 +61,7 @@ public class Main {
 		
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
-		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Para comenzar, ingrese 1 si desea Registrarse, o 2 si ya tiene usuario creado"));
+		Integer opcionInicial = Integer.parseInt(JOptionPane.showInputDialog(null, "Para comenzar ingrese:\n1_Si desea Registrarse\n2_Si ya tiene usuario creado"));
 		
 		if(opcionInicial == 1) {
 			String nuevoNombreUsuario = JOptionPane.showInputDialog("Ingrese nombre de usuario");
