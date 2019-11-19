@@ -38,18 +38,6 @@ public class Main {
 		Producto producto8 = new Producto ("Pollo", 4543543L, 400.0);
 		Producto producto9 = new Producto ("Pure", 6765765L, 800.0);
 		Producto producto10 = new Producto ("Pasta", 8987689L, 700.0);
-		  
-		sistema.agregarProductoAlSistema(producto1);
-		sistema.agregarProductoAlSistema(producto2);
-		sistema.agregarProductoAlSistema(producto3);
-		sistema.agregarProductoAlSistema(producto4);
-		sistema.agregarProductoAlSistema(producto5);
-		sistema.agregarProductoAlSistema(producto6);
-		sistema.agregarProductoAlSistema(producto7);
-		sistema.agregarProductoAlSistema(producto8);
-		sistema.agregarProductoAlSistema(producto9);
-		sistema.agregarProductoAlSistema(producto10);
-		
 //		Producto producto11 = new Producto ("Ensalada mixta", 8987689L, 700.0);
 //		Producto producto12 = new Producto ("Mostaza", 8563344L, 200.0);
 //		Producto producto13 = new Producto ("Ketchup", 81231387L, 200.0);
@@ -60,6 +48,17 @@ public class Main {
 //	  	Producto producto18 = new Producto ("Mariscos", 61231323L, 900.0);
 //  	Producto producto19 = new Producto ("Atun", 61231323L, 300.0);
 //  	Producto producto20 = new Producto ("Ensalada rusa", 61231323L, 400.0);
+		
+		sistema.agregarProductoAlSistema(producto1);
+		sistema.agregarProductoAlSistema(producto2);
+		sistema.agregarProductoAlSistema(producto3);
+		sistema.agregarProductoAlSistema(producto4);
+		sistema.agregarProductoAlSistema(producto5);
+		sistema.agregarProductoAlSistema(producto6);
+		sistema.agregarProductoAlSistema(producto7);
+		sistema.agregarProductoAlSistema(producto8);
+		sistema.agregarProductoAlSistema(producto9);
+		sistema.agregarProductoAlSistema(producto10);
 		
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
