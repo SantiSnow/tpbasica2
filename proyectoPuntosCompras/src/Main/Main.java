@@ -38,7 +38,7 @@ public class Main {
 		Producto producto8 = new Producto ("Pollo", 4543543L, 400.0);
 		Producto producto9 = new Producto ("Pure", 6765765L, 800.0);
 		Producto producto10 = new Producto ("Pasta", 8987689L, 700.0);
-//		Producto producto11 = new Producto ("Ensalada mixta", 8987689L, 700.0);
+		Producto producto11 = new Producto ("Ensalada mixta", 8987689L, 700.0);
 //		Producto producto12 = new Producto ("Mostaza", 8563344L, 200.0);
 //		Producto producto13 = new Producto ("Ketchup", 81231387L, 200.0);
 //		Producto producto14 = new Producto ("Mayonesa", 67823423L, 200.0);
@@ -59,6 +59,7 @@ public class Main {
 		sistema.agregarProductoAlSistema(producto8);
 		sistema.agregarProductoAlSistema(producto9);
 		sistema.agregarProductoAlSistema(producto10);
+		sistema.agregarProductoAlSistema(producto11);
 		
 		JOptionPane.showMessageDialog(null, "Bienvenidos Restaurante LaCachila");
 		
