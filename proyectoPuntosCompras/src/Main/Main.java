@@ -91,6 +91,7 @@ public class Main {
 									if(i.getId().equals(idProductoElegido)) {
 										Double precioFinal = sistema.realizarUnaCompra(nuevoUsuario, i);
 										System.out.println("El precio de la compra es de " + precioFinal);
+										JOptionPane.showMessageDialog(null, "El precio de la compra es de"+precioFinal);
 										Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 										if(opcionDePago.equals(1)) {
 											sistema.pagarEnEfectivo(precioFinal);
@@ -156,13 +157,16 @@ public class Main {
 								if(i.getId().equals(productoElegido)) {
 									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
 									System.out.println("El precio de la compra es de " + precioFinal);
+									JOptionPane.showMessageDialog(null, "El precio de la compra es de "+precioFinal);
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
 										sistema.sumarPuntosPorComprar(admin, precioFinal );
+										JOptionPane.showMessageDialog(null, "Producto comprado, enviando.");
 									}
 									else {
 										sistema.pagarConPuntos(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), precioFinal);
+										JOptionPane.showMessageDialog(null, "Producto comprado, enviando.");
 									}
 								}
 							}
@@ -235,6 +239,7 @@ public class Main {
 								if(i.getId().equals(productoElegido)) {
 									Double precioFinal = sistema.realizarUnaCompra(sistema.retornarElObjetoUsuario(usuarioIngresado, contraseña), i);
 									System.out.println("El precio de la compra es de " + precioFinal);
+									JOptionPane.showMessageDialog(null, "El precio de la compra es de "+precioFinal);
 									Integer opcionDePago = Integer.parseInt(JOptionPane.showInputDialog("Ingrese:\n1_Para pagar con Efectivo\n2_Para pagar con puntos"));
 									if(opcionDePago.equals(1)) {
 										sistema.pagarEnEfectivo(precioFinal);
