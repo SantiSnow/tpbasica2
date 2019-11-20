@@ -177,6 +177,34 @@ public class TestSistema {
 	}
 	
 	@Test
+	public void testLoggeoYsalirDelSistemaFalse() {
+		//Creamos el sistema y los usuarios para la prueba
+		Sistema sistema1 = new Sistema ("sistema1");
+		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
+		Usuario cliente1 = new Cliente("cliente1", "1234abcd", 638321L, 100, false);
+				
+		//Agregamos los usuarios al sistema
+		sistema1.agregaUnUsuarioAlSistema(admin1);
+		sistema1.agregaUnUsuarioAlSistema(cliente1);
+		
+		//Devuelve un false, por ingresar mal datos y/o contraseñas
+		//Primero colocamos mal el usuario
+		Assert.assertFalse(sistema1.loggearseComoUsuario("Admin2", "1234abcd"));
+		//Segundo colocamos mal la contraseña
+		Assert.assertFalse(sistema1.loggearseComoUsuario("cliente1", "1134abcd"));
+		
+		//Loggeamos correctamente, para verificar si cierran mal la sesion
+		Assert.assertTrue(sistema1.loggearseComoUsuario("admin1", "1234abcd"));
+		Assert.assertTrue(sistema1.loggearseComoUsuario("cliente1", "1234abcd"));
+		
+		//Primero colocamos el usuario incorrecto
+		Assert.assertFalse(sistema1.salirDelSistema("Admin2", "1234abcd"));
+		//Segundo colocamos una contraseña incorrecta
+		Assert.assertFalse(sistema1.salirDelSistema("cliente1", "1134abcd"));
+		
+	}
+	
+	@Test
 	public void testVaciamientoDeListaUsuarios() {
 		Sistema sistema1 = new Sistema ("sistema1");
 		Usuario admin1 = new Administrador("admin1", "1234abcd", 638468L, 9000, false);
