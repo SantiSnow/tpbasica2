@@ -1,0 +1,9 @@
+Este proyecto fue creado por Santiago Aguirre Y Leandro Lopez, para la Universidad de la Matanza. 
+En el repositorio se puede encontrar la carpeta principal del proyecto con:
+Carpetas Src, interfaces, usuarios, con el codigo fuente de la aplicacion. Por otro lado, el paquete Test incluye las pruebas del programa,
+la carpeta interfazGrafica incluye un "Beta" de la aplicacion que se maneja mediante una interfaz grafica creada con Swing y la api de 
+JFrame. Por ultimo, el main en el paquete main tiene la aplicacion final 1.0 para entregar, donde se encuentra el programa completo.
+
+Autores:
+Santiago Aguirre
+Leandro Gomez
